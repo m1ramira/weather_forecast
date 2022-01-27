@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>Weather Forecast</title>
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <!-- jQuery library -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <!-- Latest compiled JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+  <nav class="navbar navbar-dark bg-primary justify-content-between" style="color: #fff;">
+    <a class="navbar-brand">Weather Forecast</a>
+    <form class="form-inline" method="post">
+      {% csrf_token %}
+      <input class="form-control mr-sm-2" type="search" name="city" placeholder="Write city" aria-label="Search">
+      <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
+    </form>
+  </nav>
+  <br>
+  <div class="container">
+    {% if city %}
+    <div class="col-md-6 col-md-4">
+      <h1>{{city}}, {{country}}</h1>
+      <div>
+        <img src="{{icon}}">
+        {{description}}
+      </div>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Value</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">1</th>
+            <td>Temperature</td>
+            <td>{{temperature}}℃</td>
+          </tr>
+          <tr>
+            <th scope="row">2</th>
+            <td>Feels like</td>
+            <td>{{feels_like}}℃</td>
+          </tr>
+          <tr>
+            <th scope="row">3</th>
+            <td>Temperature min</td>
+            <td>{{temperature_min}}℃</td>
+          </tr>
+          <tr>
+            <th scope="row">4</th>
+            <td>Temperature max</td>
+            <td>{{temperature_max}}℃</td>
+          </tr>
+          <tr>
+            <th scope="row">5</th>
+            <td>Pressure</td>
+            <td>{{pressure}} hPa</td>
+          </tr>
+          <tr>
+            <th scope="row">6</th>
+            <td>Humidity</td>
+            <td>{{humidity}}%</td>
+          </tr>
+          <tr>
+            <th scope="row">7</th>
+            <td>Wind speed</td>
+            <td>{{windspeed}} meter/sec</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  {% else %}
+  <p>Write city to receive weather forecast</p>
+  {% endif %}
+  </div>
+</body>
+
+</html>
