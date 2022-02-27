@@ -1,4 +1,5 @@
-#Weather forecast
+# Weather forecast
+
 This app is a weather dashboard with data 
 from Open Weather Map. 
 It sends a request with parameters to a URL 
